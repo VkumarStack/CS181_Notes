@@ -64,3 +64,5 @@
   - The notion of *steps* can be formalized using the model of boolean circuits
     - In this model, the set of simple operations allowed are `AND` ($\land$), `OR` ($\lor$), and `NOT` ($\neg$)
     - Example: A circuit that outputs the majority bits in a binary string input
+      - $MAJ(a, b, c) = (a \land b) \lor (b \land c) \lor (c \land a)$
+      - This is effectively just checking all pairs of bits to see if both are 1, which therefore implies that two out of three bits are 1 (majority)
