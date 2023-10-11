@@ -64,3 +64,4 @@
   - This size is an upper bound, but there are often cases where functions can have a much smaller size
     - i.e. Addition: $O(n)$
     - i.e. Multiplication: $O(n^2)$
+    - The size of the circuit can be corresponded to the time complexity of an algorithm (i.e. a function that sorts in $O(n log n)$ roughly corresponds to a circuit of size $O(n log n)$)
