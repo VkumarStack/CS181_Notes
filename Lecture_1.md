@@ -20,7 +20,7 @@
               Result <- 0
               For i = 0, ..., n - 1:
                 For j = 0, ..., n - 1:
-                  Result <- Result + 10^(i+j)XiYj
+                  Result <- Result + 10^(i+j)Xi*Yj
       - This approach is much more efficient than the repeated addition, as it has a time complexity of $O(n^2)$, where *n* is the number of *digits* of the inputs
     - An even better algorithm for multiplication was discovered by Karatsuba in 1960 (**Karatsuba's Algorithm**), which has a time complexity of $O(n^{1.6})$ - to modern day, an algorithm with time complexity of $O(n\log n)$ has been found for multiplication
 ## What can be computed?

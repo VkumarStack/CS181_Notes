@@ -36,7 +36,7 @@
   - ![DFA First and Last Bit](./Images/DFA_First_and_Last_Bit.png)
   - From the initial state (which is typically assumed 0), the path is "split" based on the initial bit
     - Each path tries to remember the bit just seen in order to determine, when it reaches the final bit, if there is a match
-    - The valid states in this case is $S = {3, 4}$
+    - The valid states in this case is $S = {1, 3}$
 - Example: Design a DFA that outputs `1` if the bits are alternating and `0` otherwise
   - e.g. `f(0) = 1`, `f(1) = 1`, `f(010) = 1`
   - Approach: Keep note of alternations until a repeat is found - then stay at a "dead state"

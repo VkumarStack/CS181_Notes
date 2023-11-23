@@ -45,7 +45,7 @@
         - Outputs are specified as the *indices* (i.e. y[0] is index 1)
         - Connections are also specified as a *pair of indices*
         - ![Circuit Encoding](./Images/Circuit_Encoding.png)
-      - Final Encoding: (n, m, s, index of y[0], index of y[1], ..., index of y[m - 1], index of first connection to gate 1, index of second connection to gate n, ..., index of first connection to gate n + s - 1, index of second connection to gate n + s - 1)
+      - Final Encoding: (n, m, s, index of y[0], index of y[1], ..., index of y[m - 1], index of first connection to gate n, index of second connection to gate n, ..., index of first connection to gate n + s - 1, index of second connection to gate n + s - 1)
         - Since this encoding is just a list of integers, it can easily be represented as a binary string (using prefix-free encodings, i.e. `PNtoB`)
         - Once the binary string is parsed, the decoding into a circuit is also easy because the number of inputs, outputs, and gates is always specified in the beginning of the encoding so there is no ambiguity parsing the rest of it 
     - Example: 

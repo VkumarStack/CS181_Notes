@@ -1,0 +1,45 @@
+# Lecture 13
+- A language $L$ is recognized or computed by a Turing Machine $M$ if $x \in L \implies M(x) = 1$ and $x \notin L \implies M(x) = 0$
+- Traditional programming languages have branches, loops, indexable arrays, random access memory, and so forth
+  - These features may not seemingly be implementable in Turing Machines, but in actuality they are
+  - In fact, **Turing Machines are as powerful as modern programming languages**
+  - **Theorem**: For every Python program *P*, $\exists$ a Turing Machine $M$ such that $\forall x \ P(x) = M(x)$
+    - If $P$ takes $T$ basic steps, then this implies that $M$ takes $T^2$ steps
+- The Turing Machine model is fairly robust
+  - For example, a model similar to a Turing Machine but with multiple tapes or multiple heads can be simulated by the original Turing Machine
+- **Church-Turing Thesis**: Every function that is computable by physical means is computable by a Turing Machine
+- **HOCAEIT (Have Our Cake and Eat it Too) Principle**: To show something is computable (by a Turing Machine) we can use a high-level programming language 
+  - A function $f: \{0, 1\}^* \rightarrow \{0, 1\}^*$ is **computable** if $\exists$ a Turing Machine $M$ such that $f(x) = M(x) \ \forall \ x$
+  - To show something is *uncomputable*, we "just" have to show that Turing Machines cannot do it
+- **Theorem (Universality)**: There is a single Turing Machine that can simulate all Turing Machines - a **universal Turing Machine**
+- **Theorem (Uncomputability)**: There are functions that are uncomputable
+- The two aforementioned theorems rely on the idea of using programs or Turing Machines themselves as *input* - the idea of *code as data*
+## Universality
+- A universal Turing Machine can be thought of as a compiler + executor of programs
+  - $U_{TM}(M, x) = M(x)$
+- A Turing Machine $M$ can be encoded as a binary string (intuitively, just like programs are simply text files)
+  - A Turing Machine $M$ can be specified as $\delta: [k] \times \Sigma \rightarrow [k] \times \Sigma \times \{L, R, S, H\}$
+  - Let $k$ be the number of states and $l$ be the number of alphabet symbols ($\Sigma = \{a_0, a_1, ..., a_{l-1}\}$)
+  - Actions can denoted via numbers ($0 = L$, $1 = R$, $2 = S$, $3 = H$)
+  - Encoding: (k, l, (0, 0, 10, 11, 3), ... (, , , , ))
+    - Each 5-tuple represents (state, symbol, state, symbol, action)
+    - If there are $k$ states and $l$ symbols, then there are $kl$ possible tuples
+    - A Turing Machine can be described via a sequence of $2 + kl$ integers, therefore
+    - These integers can be encoded in binary, and then a prefix free encoding and concatenation can encode the list of integers as a binary string (the tuples do not really need to be encoded since after the first two integers, the rest of the integers are considered in groups of five)
+    - The integers can have a magnitude of at $max(k ,l) \leq k + l$
+    - The length of the encoding is roughly $O(kl(log(k) + log(l)))$
+    - If $M$ is a turing machine, then $<M>$ denotes the binary representation of $M$
+      - If a string $\alpha \in \{0, 1\}^*$ is not a valid encoding of a Turing Machine, just set it to mean a trivial Turing Machine that outputs `0` (dummy programs)
+- $EVAL: \{0, 1\}^* \rightarrow \{0, 1\}^* \cup \perp$
+  - $EVAL(<M>, x) = M(x)$
+- **Theorem - Turing (1936)**: $EVAL$ is computable. That is, $\exists$ a Turing Machine $U$ such that $U(<M>, x) = EVAL(M, x)$ for all inputs
+  - Easy proof: Create a Python program that simulates Turing Machines (very easy to do)
+- Implications of Universality:
+  - This is the first real definition of a general purpose computer
+  - There are universal Turing Machines with 25 states and alphabet $\{0, 1, \Delta, \phi\}$
+  - This is meta-circular evaluation (i.e. think of GCC being written in C)
+  - This universality transcends the specific model
+    - Think of a Python program that can run *all* Python programs (even itself)
+    - There even exists a single Python program that can simulate all Java programs
+  - A programming language is **Turing Complete** if it can simulate a universal Turing Machine
+    - If it can simulate a Universal Turing Machine, then it can simulate anything else

@@ -5,8 +5,8 @@
     - *(n, m, s, index of y[0], index of y[1], ..., index of y[m - 1], index of first connection to gate n, index of second connection to gate n, ..., index of first connection to gate n + s - 1, index of second connection to gate n + s - 1)*
     - This is simply a sequence of prefix-free encoding of integers
     - This representation requires $3 + m + 2s \leq 3 + n + s + 2s = n + 3s + 3$ integers (recall $m$ can be at most $n + s$)  
-      - Each integer of magnitude $n$ can be represented by $\log n$ bits, so the representation requires $\log (n + s)$ since the magnitude of each element in the list can be at most $n + s$
-      - These integers must be prefix free, so the number of bits to represent them is actually doubled to be $2 \log (n + s) + 2$
+      - Each integer of magnitude $n$ can be represented by $\log n + 1$ bits, so the representation requires $\log (n + s) + 1$ since the magnitude of each element in the list can be at most $n + s$
+      - These integers must be prefix free, so the number of bits to represent them is actually doubled (and two extra bits added) to be $2 \log (n + s) + 4$
       - Thus, the order of the bit representation of the entire list is $(n + 3s + 3)(2 \log(n + s) + 4) \leq 12(n + s) \log_2(n + s)$
 - Theorem (**Shannon's**): There exists a function $f: \{0, 1\}^n \rightarrow \{0, 1\}$ that has no `NAND` circuit of size $\leq c \frac{2^n}{n}$ (for some fixed constant greater than zero)
   - Let $ALL_n = \{f: \{0, 1\}^n \rightarrow \{0, 1\}\}$ represent the class of *all* functions
@@ -26,7 +26,7 @@
   - Comparing the magnitudes of $2 * 2^{12(n + s) \log_2(n+s)}$ and $2^{2^n}$, it can be mathematically (skipping here) shown that, if $s = \frac{2^n}{24n}$, then for $n \geq 12$, $2 * 2^{12(n + s) \log_2(n + s)} < 2^{2^n}$, thus proving that $|CIRCUIT| < |ALL|$
 - What Shannon's Theorem implies is that there exists a function $f$ that requires $\frac{2^n}{24n}$ gates - there is some function out there that cannot be efficiently represented
 ## Code as Data
-- In proving Shannon's Theorem, the fact that circuits themselves can be represented as binary strings was used heavily to **count circuit**
+- In proving Shannon's Theorem, the fact that circuits themselves can be represented as binary strings was used heavily to **count circuits**
   - This idea is especially important for another reason, though, as it implies that code (represented as circuits) can act as inputs to other circuits - **code can act as data**
 - Normally, a circuit takes an input in the form of a binary string and returns an output, also in the form a binary string
   - Let $EVAL: \{0, 1\}^{size(n, m, s)} \times \{0, 1\}^n \rightarrow \{0, 1\}^m$ represent a function that takes in two inputs, a circuit $C$ and an input string $x$, and outputs the output binary string of that circuit

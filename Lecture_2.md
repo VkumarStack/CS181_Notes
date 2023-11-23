@@ -18,7 +18,7 @@
   - Any non-prefix-free encoding can be converted to a prefix-free encoding by employing the aforementioned duplication strategy
     - This intuitively makes sense because `01` cannot occur in any encoding of an object, so it must only represent some sort of separator or end marker
   - Prefix-free encodings are important for creating encodings that contain *multiple* of an object
-  - **Theorem**: Suppose we have a prefix-free encoding $pE: O \rightarrow \{ 0, 1\}^\*$, then $\bar{pE}: O^\* \rightarrow \{0, 1\}^*$
+  - **Theorem**: Suppose we have a prefix-free encoding $pE: O \rightarrow \{ 0, 1\}^*$, then $\bar{pE}: O^* \rightarrow \{0, 1\}^*$
     - $\bar{pE}([x_0, x_1, ... x_k]) = pE(x_0) ○ pE(x_1) ○ ... ○ pE(x_k)$
       - This is simply concatenating the prefix-free representations of each $x_i$ together
     - Proof: A Decoding Algorithm:
@@ -39,7 +39,7 @@
       - $\bar{pE}([x_0]) = pE(x_0)$
       - $\bar{pE}([x_0, x_1]) = pE(x_0) ○ pE(x_1)$
         - The first is a prefix of the second
-- Given an encoding $E: O \rightarrow \{0, 1\}^\*$, we can build a new encoding $pE: O \rightarrow \{0, 1\}\^*$ that is prefix-free
+- Given an encoding $E: O \rightarrow \{0, 1\}^*$, we can build a new encoding $pE: O \rightarrow \{0, 1\}^*$ that is prefix-free
   - Algorithm:
     - Compute $E(x)$
     - Duplicate each bit
